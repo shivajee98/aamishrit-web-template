@@ -17,7 +17,7 @@ const UserButton = () => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <div>
-            <User2 />
+            <User2 className="w-7 h-7" />
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="bg-[#6B4226] border-[#8B5A2B]">

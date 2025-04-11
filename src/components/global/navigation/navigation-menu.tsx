@@ -17,12 +17,11 @@ import {
 
 export function NavigationMenuDemo() {
   return (
-    <NavigationMenu>
+    <NavigationMenu >
       <NavigationMenuList>
-
         {/* It is shop nav-menu-item */}
         <NavigationMenuItem className="" >
-          <NavigationMenuTrigger className="bg-inherit underline ">Shop</NavigationMenuTrigger>
+          <NavigationMenuTrigger className="bg-inherit underline hover:no-underline text-md">Shop</NavigationMenuTrigger>
           <NavigationMenuContent className="bg-[#6B4226]">
             <ul className="flex flex-col gap-2 px-2 py-1  w-[18vh] text-[#E6D5C1]">
 
@@ -53,8 +52,8 @@ const ListItem = React.forwardRef<
           )}
           {...props}
         >
-          <div className="text-sm font-medium leading-none hover:underline">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+          <div className="text-sm font-medium leading-none hover:underline hover:bg-inherit">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-brown-light-text">
             {children}
           </p>
         </a>
