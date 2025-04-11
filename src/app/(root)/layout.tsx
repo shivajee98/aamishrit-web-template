@@ -1,4 +1,3 @@
-// import NavigationBar from '@/components/global/navigation'
 import NavigationBar from '@/components/global/navigation'
 import React from 'react'
 
