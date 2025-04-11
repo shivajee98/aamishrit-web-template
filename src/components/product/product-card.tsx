@@ -73,7 +73,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </CardContent>
         <CardFooter className="p-4 pt-0 flex justify-between items-center">
           <div className="flex items-baseline gap-2">
-            <span className="font-bold">${product.price}</span>
+            <span className="font-bold">₹{product.price}</span>
             {product.originalPrice && (
               <span className="text-sm text-gray-500 line-through">${product.price}</span>
             )}

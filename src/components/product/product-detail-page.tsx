@@ -13,7 +13,7 @@ import Footer from "@/components/global/footer"
 
 import ProductGridSkeleton from "./Product-grid-skeleton"
 import ReviewSection from "./review-section"
-import { getProductById } from "@/https/api"
+import { getProductById } from "@/Dummies/api"
 
 export default function ProductDetailPage({ params }: { params: { id: string } }) {
   const [selectedImage, setSelectedImage] = useState(0)

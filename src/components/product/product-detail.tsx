@@ -7,8 +7,6 @@ import { useEffect, useState } from "react"
 import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
-import { useWishlist } from "@/context/wishlist-context"
-import { getProductById } from "@/https/api"
 import { addToCart } from "@/react-redux/slices/cartSlice"
 import { useAppDispatch } from "@/react-redux/store"
 import type { Product } from "@/types"
@@ -23,7 +21,6 @@ interface ProductDetailProps {
 export default function ProductDetail({ id }: ProductDetailProps) {
   const router = useRouter()
   const dispatch = useAppDispatch()
-  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist()
   const [showAllThumbnails, setShowAllThumbnails] = useState(false)
   const [product, setProduct] = useState<Product | null>(null)
   const [quantity, setQuantity] = useState(1)

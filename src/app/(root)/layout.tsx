@@ -1,15 +1,13 @@
+import Footer from '@/components/global/footer'
 import NavigationBar from '@/components/global/navigation'
 import React from 'react'
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className='select-none relative scrollbar-hide'>
-      <NavigationBar />
-      <main className='mt-16'>
-        {children}
-        {/* <Toaster /> */}
-      </main>
-    </div>
+    <div className="flex flex-col min-h-screen">
+    <NavigationBar />
+    <main className="flex-grow">{children}</main>
+  </div>
   )
 }
 
