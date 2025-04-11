@@ -8,7 +8,7 @@ const products = [
         name: "Chamomile Herbal Tea",
         category: "herbal-tea",
         price: 12.99,
-        image: "https://images.unsplash.com/photo-1741718234361-ebb40aac7533?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        image: "https://res.cloudinary.com/dng61q3lg/image/upload/v1744368533/m699x2hzszyusfggvixx.jpg",
         isNew: true,
         isBestseller: false,
     },
@@ -17,7 +17,7 @@ const products = [
         name: "Organic Palm Jaggery",
         category: "jaggery",
         price: 8.49,
-        image: "https://images.unsplash.com/photo-1741620979760-bccef3bb5b17?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        image: "https://res.cloudinary.com/dng61q3lg/image/upload/v1744368655/qyumbp2xxr58k4t2s5ny.jpg",
         isNew: false,
         isBestseller: true,
     },
@@ -108,7 +108,7 @@ const ProductShowcase = () => {
                                 </div>
                                 <h3 className="text-lg font-semibold text-luxury-text mb-2">{product.name}</h3>
                                 <div className="flex justify-between items-center mt-4">
-                                    <span className="text-lg font-bold text-luxury-dark">${product.price.toFixed(2)}</span>
+                                    <span className="text-lg font-bold text-luxury-dark">₹{product.price.toFixed(2)}</span>
                                     <Button variant="outline" className="border-luxury-medium text-luxury-dark hover:bg-luxury-light">
                                         Add to Cart
                                     </Button>

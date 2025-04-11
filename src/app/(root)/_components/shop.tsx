@@ -8,14 +8,14 @@ const categories = [
         id: "herbal-tea",
         name: "Herbal Tea",
         description: "Soothing blends for wellness and relaxation",
-        image: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aGVyYmFsJTIwdGVhfGVufDB8fDB8fHww",
+        image: "https://res.cloudinary.com/dng61q3lg/image/upload/v1744368533/m699x2hzszyusfggvixx.jpg",
         link: "/category/herbal-tea",
     },
     {
         id: "jaggery",
         name: "Jaggery",
         description: "Natural sweeteners with rich nutrients",
-        image: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aGVyYmFsJTIwdGVhfGVufDB8fDB8fHww",
+        image: "https://res.cloudinary.com/dng61q3lg/image/upload/v1744368655/qyumbp2xxr58k4t2s5ny.jpg",
         link: "/category/jaggery",
     },
     {
