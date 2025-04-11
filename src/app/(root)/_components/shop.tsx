@@ -15,7 +15,7 @@ const categories = [
         id: "jaggery",
         name: "Jaggery",
         description: "Natural sweeteners with rich nutrients",
-        image: "/jaggery.webp",
+        image: "https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8aGVyYmFsJTIwdGVhfGVufDB8fDB8fHww",
         link: "/category/jaggery",
     },
     {
