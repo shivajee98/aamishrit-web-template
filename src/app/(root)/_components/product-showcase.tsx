@@ -1,83 +1,14 @@
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
-
-const products = [
-    {
-        id: 1,
-        name: "Chamomile Herbal Tea",
-        category: "herbal-tea",
-        price: 12.99,
-        image: "https://images.unsplash.com/photo-1741718234361-ebb40aac7533?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        isNew: true,
-        isBestseller: false,
-    },
-    {
-        id: 2,
-        name: "Organic Palm Jaggery",
-        category: "jaggery",
-        price: 8.49,
-        image: "https://images.unsplash.com/photo-1741620979760-bccef3bb5b17?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        isNew: false,
-        isBestseller: true,
-    },
-    {
-        id: 3,
-        name: "Millet Chocolate Cookies",
-        category: "cookies",
-        price: 6.99,
-        image: "https://images.unsplash.com/photo-1741800459656-4116dcb230ae?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        isNew: false,
-        isBestseller: false,
-    },
-    {
-        id: 4,
-        name: "Lavender Sleep Tea",
-        category: "herbal-tea",
-        price: 14.99,
-        image: "https://images.unsplash.com/photo-1741851373559-6879db14fd8a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        isNew: true,
-        isBestseller: false,
-    },
-    {
-        id: 5,
-        name: "Coconut Jaggery Blocks",
-        category: "jaggery",
-        price: 9.99,
-        image: "https://images.unsplash.com/photo-1742144897663-6c8c6faaf1ab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        isNew: false,
-        isBestseller: true,
-    },
-    {
-        id: 6,
-        name: "Oatmeal Raisin Cookies",
-        category: "cookies",
-        price: 7.49,
-        image: "https://images.unsplash.com/photo-1742330425089-1f91d18eaa4e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        isNew: false,
-        isBestseller: false,
-    },
-    {
-        id: 7,
-        name: "Ginger Turmeric Tea",
-        category: "herbal-tea",
-        price: 13.49,
-        image: "https://images.unsplash.com/photo-1742770711842-c29e32ee01d9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        isNew: false,
-        isBestseller: true,
-    },
-    {
-        id: 8,
-        name: "Date Palm Jaggery Powder",
-        category: "jaggery",
-        price: 10.99,
-        image: "https://plus.unsplash.com/premium_photo-1743089372149-e6f465618eab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-        isNew: true,
-        isBestseller: false,
-    },
-]
+import { useProducts } from "@/hooks/useProducts"
 
 const ProductShowcase = () => {
+    const { products, loading, error } = useProducts()
+
+    if (loading) return <div className="text-center py-20">Loading...</div>
+    if (error) return <div className="text-center py-20 text-red-600">Error: {error}</div>
+
     return (
         <section className="py-16 px-4 md:px-8">
             <div className="container mx-auto">
@@ -92,7 +23,7 @@ const ProductShowcase = () => {
                         <div key={product.id} className="product-card">
                             <div className="relative overflow-hidden h-64 ">
                                 <Image
-                                    src={product.image || "/placeholder.svg"}
+                                    src={product.images?.[0] || "/placeholder.svg"}
                                     alt={product.name}
                                     fill
                                     className="object-cover transition-transform duration-500"
