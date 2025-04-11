@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "@/components/global/footer";
 import AboutSection from "./_components/about";
 import HeroImage from "./_components/hero-image";
 import ProductShowcase from "./_components/product-showcase";
@@ -14,7 +15,7 @@ const AdminPage = () => {
             <ShopSection />
             <ProductShowcase />
             <AboutSection />
-            {/* <Footer /> */}
+            <Footer />
         </div>
     );
 };
