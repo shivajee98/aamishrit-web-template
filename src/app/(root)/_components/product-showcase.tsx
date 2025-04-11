@@ -108,7 +108,7 @@ const ProductShowcase = () => {
                                 </div>
                                 <h3 className="text-lg font-semibold text-luxury-text mb-2">{product.name}</h3>
                                 <div className="flex justify-between items-center mt-4">
-                                    <span className="text-lg font-bold text-luxury-dark">${product.price.toFixed(2)}</span>
+                                    <span className="text-lg font-bold text-luxury-dark">₹{product.price.toFixed(2)}</span>
                                     <Button variant="outline" className="border-luxury-medium text-luxury-dark hover:bg-luxury-light">
                                         Add to Cart
                                     </Button>
