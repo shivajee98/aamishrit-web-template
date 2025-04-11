@@ -1,5 +1,6 @@
 export interface Product {
-    id: string
+    images: any
+    ID: number
     name: string
     description: string
     longDescription?: string

@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 
 export interface Product {
+    ID: any
     id: number
     name: string
     category: string

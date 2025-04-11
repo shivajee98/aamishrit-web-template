@@ -1,16 +1,24 @@
-import { Suspense } from "react"
-import ProductDetail from "@/components/product/product-detail"
-import ProductDetailSkeleton from "@/components/product/product-detail-skeleton"
+// /src/app/(root)/product/[id]/page.tsx
 
-export default async function ProductPage({ params }: { params: Promise<{ id: string }> }) {
+import ProductDetailPage from "@/components/product/product-detail-page"
+import { getProductById } from "@/https/api" // Should talk to real backend
 
-    const { id } = await params
+interface Props {
+    params: { id?: string }
+}
 
-    return (
-        <div className="container mx-auto px-4 py-8">
-            <Suspense fallback={<ProductDetailSkeleton />}>
-                <ProductDetail id={id} />
-            </Suspense>
-        </div>
-    )
+export default async function ProductPage(props: Props) {
+    const idStr = props?.params?.id
+    const idNum = Number(idStr)
+
+    if (isNaN(idNum)) {
+        console.error("Invalid product ID:", idStr)
+        return <div>Invalid product ID</div>
+    }
+
+    const product = await getProductById(idNum)
+
+    if (!product) return <div>Product Not Found</div>
+
+    return <ProductDetailPage product={product} />
 }
