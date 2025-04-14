@@ -22,7 +22,7 @@ const ProductShowcase = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 lg:grid-cols-4 lg:gap-12">
                     {products.map((product) => (
                         <Link href={`/product/${product.ID}`} className="block">
-                            <div key={product.id} className="product-card">
+                            <div key={product.ID} className="product-card">
                                 <div className="relative overflow-hidden h-64">
                                     <Image
                                         src={product.images?.[0] || "/placeholder.svg"}
@@ -31,13 +31,13 @@ const ProductShowcase = () => {
                                         className="object-cover transition-transform duration-500"
                                     />
                                     <div className="absolute top-2 left-2 flex flex-col gap-2">
-                                        {product.isNew && <Badge className="bg-luxury-medium text-white">New</Badge>}
-                                        {product.isBestseller && <Badge className="bg-luxury-dark text-white">Bestseller</Badge>}
+                                        {/* {product.isNew && <Badge className="bg-luxury-medium text-white">New</Badge>}
+                                        {product.isBestseller && <Badge className="bg-luxury-dark text-white">Bestseller</Badge>} */}
                                     </div>
                                 </div>
                                 <div className="p-4">
                                     <div className="text-sm text-luxury-text/60 uppercase mb-1">
-                                        {product.category.split("-").join(" ")}
+                                        {/* {product.category.split("-").join(" ")} */}
                                     </div>
                                     <h3 className="text-lg font-semibold text-luxury-text mb-2">{product.name}</h3>
                                     <div className="flex justify-between items-center mt-4">

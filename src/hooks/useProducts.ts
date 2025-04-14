@@ -1,16 +1,7 @@
 // hooks/useProducts.ts
+import { getAllProducts } from "@/api/products"
+import { Product } from "@/types"
 import { useEffect, useState } from "react"
-
-export interface Product {
-    ID: any
-    id: number
-    name: string
-    category: string
-    price: number
-    images: string
-    isNew: boolean
-    isBestseller: boolean
-}
 
 export function useProducts() {
     const [products, setProducts] = useState<Product[]>([])
@@ -18,20 +9,17 @@ export function useProducts() {
     const [error, setError] = useState<string | null>(null)
 
     useEffect(() => {
-        const fetchProducts = async () => {
+        const fetch = async () => {
             try {
-                const res = await fetch("http://localhost:3000/api/products")
-                if (!res.ok) throw new Error(`HTTP error ${res.status}`)
-                const data: Product[] = await res.json()
+                const data = await getAllProducts()
                 setProducts(data)
             } catch (err: any) {
-                setError(err.message)
+                setError(err.message || "Failed to fetch products")
             } finally {
                 setLoading(false)
             }
         }
-
-        fetchProducts()
+        fetch()
     }, [])
 
     return { products, loading, error }

@@ -8,7 +8,7 @@ import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
 import { useWishlist } from "@/context/wishlist-context"
-import { getProductById } from "@/https/api"
+import { getProductById } from "@/api/products"
 import { addToCart } from "@/react-redux/slices/cartSlice"
 import { useAppDispatch } from "@/react-redux/store"
 import type { Product } from "@/types"

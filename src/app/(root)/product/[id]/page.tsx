@@ -1,22 +1,18 @@
-// /src/app/(root)/product/[id]/page.tsx
-
 import ProductDetailPage from "@/components/product/product-detail-page"
-import { getProductById } from "@/https/api" // Should talk to real backend
+import { getProductsById } from "@/api/products"
 
 interface Props {
     params: { id?: string }
 }
 
-export default async function ProductPage(props: Props) {
-    const idStr = props?.params?.id
-    const idNum = Number(idStr)
+export default async function ProductPage({ params }: Props) {
+    const id = Number(params?.id)
 
-    if (isNaN(idNum)) {
-        console.error("Invalid product ID:", idStr)
-        return <div>Invalid product ID</div>
+    if (isNaN(id)) {
+        return <div>Invalid Product ID</div>
     }
 
-    const product = await getProductById(idNum)
+    const product = await getProductsById(id)
 
     if (!product) return <div>Product Not Found</div>
 
