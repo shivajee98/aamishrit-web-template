@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
 import { useProducts } from "@/hooks/useProducts"
 import Link from "next/link"
@@ -30,15 +29,8 @@ const ProductShowcase = () => {
                                         fill
                                         className="object-cover transition-transform duration-500"
                                     />
-                                    <div className="absolute top-2 left-2 flex flex-col gap-2">
-                                        {/* {product.isNew && <Badge className="bg-luxury-medium text-white">New</Badge>}
-                                        {product.isBestseller && <Badge className="bg-luxury-dark text-white">Bestseller</Badge>} */}
-                                    </div>
                                 </div>
                                 <div className="p-4">
-                                    <div className="text-sm text-luxury-text/60 uppercase mb-1">
-                                        {/* {product.category.split("-").join(" ")} */}
-                                    </div>
                                     <h3 className="text-lg font-semibold text-luxury-text mb-2">{product.name}</h3>
                                     <div className="flex justify-between items-center mt-4">
                                         <span className="text-lg font-bold text-luxury-dark">₹{product.price.toFixed(2)}</span>

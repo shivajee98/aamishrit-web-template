@@ -1,56 +1,21 @@
-"use client";
-
-import Image from "next/image";
+import { useCategory } from "@/hooks/useCategoryById";
 import { notFound } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
-import ProductGridSkeleton from "../../../../components/product/Product-grid-skeleton";
-import { useQuery } from "@tanstack/react-query";
 import ProductGrid from "@/components/product/product-grid";
-import { products } from "@/constants/dummy-product";
-
-
-const getCategory = (slug: string) => {
-    // Filter products that belong to the category slug
-    const categoryProducts = products.filter(
-      (product) => product.category.slug === slug
-    );
-
-    if (categoryProducts.length === 0) return null;
-
-    // Derive category info from the first matching product
-    const categoryInfo = {
-      name: categoryProducts[0].category.name,
-      slug: categoryProducts[0].category.slug,
-      description: `Browse our latest ${categoryProducts[0].category.name}`,
-      productImages: categoryProducts[0].productImages,
-    };
-
-    return {
-      ...categoryInfo,
-      products: categoryProducts,
-    };
-  };
-
+import ProductGridSkeleton from "@/components/product/Product-grid-skeleton";
+import Image from "next/image";
+import { Suspense } from "react";
 
 export default function CategoryPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const [slug, setSlug] = useState("");
+  const { slug } = params;
+  const { data: category, isLoading } = useCategory(slug);
 
-  useEffect(() => {
-    const fetchSlug = async () => {
-      const { slug } = await params;
-      setSlug(slug);
-    };
-    fetchSlug();
-  }, [params]);
-
-  const { data: category } = useQuery({
-    queryKey: ["categoryById", slug],
-    queryFn: async () => getCategory(slug),
-  });
+  if (isLoading) {
+    return <ProductGridSkeleton count={12} />;
+  }
 
   if (!category) {
     notFound();
@@ -60,13 +25,10 @@ export default function CategoryPage({
     <div className="container mx-auto px-4 py-8">
       <div className="w-full">
         <div className="bg-white rounded-lg shadow overflow-hidden mb-8">
-          {category.productImages && (
+          {category.images?.[0] && (
             <div className="relative h-48 md:h-64 w-full">
               <Image
-                src={
-                  category.productImages[0] ||
-                  "/placeholder.svg?height=300&width=800"
-                }
+                src={category.images[0]}
                 alt={category.name}
                 fill
                 className="object-cover"
@@ -79,17 +41,9 @@ export default function CategoryPage({
             </div>
           )}
 
-          {!category.productImages && (
-            <div className="p-6">
-              <h1 className="text-3xl font-bold">{category.name}</h1>
-            </div>
-          )}
-
-          {category.description && (
-            <div className="p-6 pt-0 border-b">
-              <p className="text-gray-600">{category.description}</p>
-            </div>
-          )}
+          <div className="p-6 pt-0 border-b">
+            <p className="text-gray-600">{category.description}</p>
+          </div>
         </div>
 
         {/* Products */}

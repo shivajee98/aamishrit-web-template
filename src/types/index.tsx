@@ -101,3 +101,11 @@ export interface OrderItem {
   status: string
   createdAt: string
 }
+
+export interface Category {
+  name: string;
+  slug: string;
+  description?: string;
+  images: string[];
+  products: Product[];
+}
