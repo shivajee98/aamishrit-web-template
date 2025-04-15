@@ -1,12 +1,36 @@
-// hooks/useAllCategories.ts
-import { useQuery } from "@tanstack/react-query";
-import { fetchUserAddress } from "@/api/user";
+// hooks/useAddress.ts
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { fetchUserAddress, createUserAddress } from "@/api/user";
 import { UserAddress } from "@/types";
+import { useAuth } from "@clerk/nextjs";
 
+// for fetching user address
 export function useUserAddress() {
+    const { getToken } = useAuth();
+
     return useQuery<UserAddress>({
         queryKey: ["userAddress"],
-        queryFn: fetchUserAddress,
-        retry: false
-    })
+        queryFn: async () => {
+            const token = await getToken();
+            if (!token) throw new Error("User not authenticated");
+            return fetchUserAddress(token);
+        },
+        retry: false,
+    });
+}
+
+// for creating/updating address
+export function useCreateUserAddress() {
+    const queryClient = useQueryClient();
+    const { getToken } = useAuth();
+
+    return useMutation({
+        mutationFn: async (address: UserAddress) => {
+            const token = await getToken();
+            return createUserAddress(address, token || undefined);
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ["userAddress"] });
+        },
+    });
 }
