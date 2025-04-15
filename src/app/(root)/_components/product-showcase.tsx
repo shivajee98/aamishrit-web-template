@@ -35,7 +35,7 @@ const ProductShowcase = () => {
                                     <div className="flex justify-between items-center mt-4">
                                         <span className="text-lg font-bold text-luxury-dark">₹{product.price.toFixed(2)}</span>
                                         <Button variant="outline" className="border-luxury-medium text-luxury-dark hover:bg-luxury-light">
-                                            Add to Cart
+                                            Buy Now
                                         </Button>
                                     </div>
                                 </div>
