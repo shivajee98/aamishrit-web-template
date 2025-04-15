@@ -34,18 +34,13 @@ export interface Review {
   comment: string
 }
 
-export interface Address {
-  id: string
-  fullName: string
-  addressLine1: string
-  addressLine2: string
-  landmark: string
-  city: string
-  state: string
-  pinCode: string
-  country: string
-  mobileNumber: string
-  isDefault: boolean
+export interface UserAddress {
+  street: string;
+  city: string;
+  state: string;
+  country: string;
+  zipCode: string;
+  isDefault: boolean;
 }
 
 export interface CartItem extends Product {
@@ -66,7 +61,7 @@ export interface Order {
   shipping: number
   tax: number
   total: number
-  shippingAddress: Address
+  shippingAddress: UserAddress
   payment: {
     method: string
     cardLast4?: string
@@ -92,7 +87,7 @@ export interface OrderItem {
   quantity: number
   images: []
   items: CartItem[]
-  shippingAddress: Address
+  shippingAddress: UserAddress
   paymentInfo: PaymentInfo
   subtotal: number
   shipping: number
