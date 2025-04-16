@@ -6,6 +6,33 @@ import { motion } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 
+<<<<<<< HEAD
+=======
+const categories = [
+    {
+        id: "herbal-tea",
+        name: "Herbal Tea",
+        description: "Soothing blends for wellness and relaxation",
+        image: "https://res.cloudinary.com/dng61q3lg/image/upload/v1744368533/m699x2hzszyusfggvixx.jpg",
+        link: "/category/herbal-tea",
+    },
+    {
+        id: "jaggery",
+        name: "Jaggery",
+        description: "Natural sweeteners with rich nutrients",
+        image: "https://res.cloudinary.com/dng61q3lg/image/upload/v1744368655/qyumbp2xxr58k4t2s5ny.jpg",
+        link: "/category/jaggery",
+    },
+    {
+        id: "cookies",
+        name: "Cookies",
+        description: "Artisanal treats made with organic ingredients",
+        image: "https://images.unsplash.com/photo-1590080874088-eec64895b423?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29va2llc3xlbnwwfHwwfHx8MA%3D%3D",
+        link: "/category/cookies",
+    },
+]
+
+>>>>>>> 474d7cf81f2ae6e996c5c994db012bf453ae89d6
 const ShopSection = () => {
     // Fetch categories using the custom hook
     const { data: categories, isLoading } = useAllCategories();

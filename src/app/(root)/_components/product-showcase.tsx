@@ -1,7 +1,85 @@
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+<<<<<<< HEAD
 import { useProducts } from "@/hooks/useProducts"
 import Link from "next/link"
+=======
+
+const products = [
+    {
+        id: 1,
+        name: "Chamomile Herbal Tea",
+        category: "herbal-tea",
+        price: 12.99,
+        image: "https://res.cloudinary.com/dng61q3lg/image/upload/v1744368533/m699x2hzszyusfggvixx.jpg",
+        isNew: true,
+        isBestseller: false,
+    },
+    {
+        id: 2,
+        name: "Organic Palm Jaggery",
+        category: "jaggery",
+        price: 8.49,
+        image: "https://res.cloudinary.com/dng61q3lg/image/upload/v1744368655/qyumbp2xxr58k4t2s5ny.jpg",
+        isNew: false,
+        isBestseller: true,
+    },
+    {
+        id: 3,
+        name: "Millet Chocolate Cookies",
+        category: "cookies",
+        price: 6.99,
+        image: "https://images.unsplash.com/photo-1741800459656-4116dcb230ae?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        isNew: false,
+        isBestseller: false,
+    },
+    {
+        id: 4,
+        name: "Lavender Sleep Tea",
+        category: "herbal-tea",
+        price: 14.99,
+        image: "https://images.unsplash.com/photo-1741851373559-6879db14fd8a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        isNew: true,
+        isBestseller: false,
+    },
+    {
+        id: 5,
+        name: "Coconut Jaggery Blocks",
+        category: "jaggery",
+        price: 9.99,
+        image: "https://images.unsplash.com/photo-1742144897663-6c8c6faaf1ab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        isNew: false,
+        isBestseller: true,
+    },
+    {
+        id: 6,
+        name: "Oatmeal Raisin Cookies",
+        category: "cookies",
+        price: 7.49,
+        image: "https://images.unsplash.com/photo-1742330425089-1f91d18eaa4e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        isNew: false,
+        isBestseller: false,
+    },
+    {
+        id: 7,
+        name: "Ginger Turmeric Tea",
+        category: "herbal-tea",
+        price: 13.49,
+        image: "https://images.unsplash.com/photo-1742770711842-c29e32ee01d9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        isNew: false,
+        isBestseller: true,
+    },
+    {
+        id: 8,
+        name: "Date Palm Jaggery Powder",
+        category: "jaggery",
+        price: 10.99,
+        image: "https://plus.unsplash.com/premium_photo-1743089372149-e6f465618eab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        isNew: true,
+        isBestseller: false,
+    },
+]
+>>>>>>> 474d7cf81f2ae6e996c5c994db012bf453ae89d6
 
 const ProductShowcase = () => {
     const { products, loading, error } = useProducts()
@@ -40,7 +118,23 @@ const ProductShowcase = () => {
                                     </div>
                                 </div>
                             </div>
+<<<<<<< HEAD
                         </Link>
+=======
+                            <div className="p-4">
+                                <div className="text-sm text-luxury-text/60 uppercase mb-1">
+                                    {product.category.split("-").join(" ")}
+                                </div>
+                                <h3 className="text-lg font-semibold text-luxury-text mb-2">{product.name}</h3>
+                                <div className="flex justify-between items-center mt-4">
+                                    <span className="text-lg font-bold text-luxury-dark">₹{product.price.toFixed(2)}</span>
+                                    <Button variant="outline" className="border-luxury-medium text-luxury-dark hover:bg-luxury-light">
+                                        Add to Cart
+                                    </Button>
+                                </div>
+                            </div>
+                        </div>
+>>>>>>> 474d7cf81f2ae6e996c5c994db012bf453ae89d6
                     ))}
                 </div>
             </div>
