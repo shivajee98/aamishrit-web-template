@@ -1,5 +1,5 @@
 // api/user.ts
-import { UserAddress } from "@/types";
+import { NewUser, UserAddress } from "@/types";
 import axios, { getAuthAxios } from "@/utils/axios";
 
 export async function fetchUserAddress(token: string): Promise<UserAddress> {
@@ -16,5 +16,28 @@ export async function createUserAddress(
         ? await getAuthAxios(() => Promise.resolve(token))
         : axios;
     const res = await apiInstance.post("/api/address", address);
+    return res.data;
+}
+
+export const checkUserExists = async (
+    getToken: () => Promise<string | null>
+): Promise<boolean> => {
+    const authAxios = await getAuthAxios(getToken);
+
+    try {
+        const res = await authAxios.get("/users/check");
+        return res.data.exists;
+    } catch (error) {
+        console.error("Error checking user existence", error);
+        throw error;
+    }
+};
+
+// Extend API logic
+export async function createUser(user: NewUser, token?: string): Promise<any> {
+    const apiInstance = token
+        ? await getAuthAxios(() => Promise.resolve(token))
+        : axios;
+    const res = await apiInstance.post("/api/user/register", user);
     return res.data;
 }

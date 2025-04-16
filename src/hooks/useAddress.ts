@@ -20,7 +20,7 @@ export function useUserAddress() {
 }
 
 // for creating/updating address
-export function useCreateUserAddress() {
+export function useCreateUserAddress(options?: { onSuccess?: () => void }) {
     const queryClient = useQueryClient();
     const { getToken } = useAuth();
 
@@ -31,6 +31,7 @@ export function useCreateUserAddress() {
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["userAddress"] });
+            if (options?.onSuccess) options.onSuccess(); // 🔥
         },
     });
 }

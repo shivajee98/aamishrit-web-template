@@ -2,6 +2,7 @@ export interface Product {
   ID: number
   name: string
   description: string
+  quantity: number
   longDescription?: string
   price: number
   originalPrice?: number
@@ -104,3 +105,8 @@ export interface Category {
   images: string[];
   products: Product[];
 }
+
+export type NewUser = {
+  name: string;
+  email?: string; // if you're capturing this
+};

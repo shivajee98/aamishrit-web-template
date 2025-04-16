@@ -11,8 +11,6 @@ const api = axios.create({
 // Optional: helper to attach auth dynamically
 export const getAuthAxios = async (getToken: () => Promise<string | null>) => {
     const token = await getToken();
-    console.log(token);
-    
     const authApi = axios.create({
         baseURL: process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000",
         headers: {

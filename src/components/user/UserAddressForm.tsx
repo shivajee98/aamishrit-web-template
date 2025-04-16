@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation"; // ✅
 import { useUser } from "@clerk/nextjs";
 import { useUserAddress, useCreateUserAddress } from "@/hooks/useAddress";
 import { UserAddress } from "@/types";
@@ -14,13 +15,21 @@ const defaultAddress: UserAddress = {
 };
 
 const UserAddressForm = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
+    const router = useRouter(); // ✅
+
     const { data, isLoading } = useUserAddress();
-    const { mutate: createAddress, isPending } = useCreateUserAddress();
+
+    // ✅ useCreateUserAddress with navigation on success
+    const { mutate: createAddress, isPending } = useCreateUserAddress({
+        onSuccess: () => {
+            router.push("/checkout/confirm"); // 🔥 the redirect
+        },
+    });
+
     const [address, setAddress] = useState<UserAddress>(defaultAddress);
     const [initialized, setInitialized] = useState(false);
 
     useEffect(() => {
-        // Do this ONCE when loading is done
         if (!isLoading && !initialized) {
             if (data) {
                 setAddress(data);
@@ -41,7 +50,7 @@ const UserAddressForm = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        createAddress(address);
+        createAddress(address); // ✅ still just pass the address
     };
 
     if (!isLoggedIn) return null;
