@@ -1,14 +1,14 @@
 import NavigationBar from '@/components/global/navigation'
+import ScrollNavigation from '@/components/global/navigation/scroll-navigation'
 import { ClerkProvider } from '@clerk/nextjs'
 import React from 'react'
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className='select-none relative scrollbar-hide'>
-        <NavigationBar />
-        <main className='mt-16'>
+    <div className='flex flex-col min-h-screen'>
+        <ScrollNavigation />
+        <main className='flex-grow lg:pt-4 pt-12 md:pt-12'>
           {children}
-          {/* <Toaster /> */}
         </main>
     </div>
   )
