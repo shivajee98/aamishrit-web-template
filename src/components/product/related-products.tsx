@@ -46,7 +46,7 @@ export default function RelatedProducts({ relatedProducts, isLoading }: RelatedP
             <Card className="h-full hover:shadow-md transition-shadow overflow-hidden">
               <div className="relative h-[200px]">
                 <Image
-                  src={product.productImages[0] || "/placeholder.svg?height=200&width=200"}
+                  src={product.images[0] || "/placeholder.svg?height=200&width=200"}
                   alt={product.name}
                   fill
                   className="object-cover"
@@ -61,12 +61,12 @@ export default function RelatedProducts({ relatedProducts, isLoading }: RelatedP
                       <Star
                         key={i}
                         className={`h-4 w-4 ${
-                          i < Math.floor(product.rating) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"
+                          i < Math.floor(product.reviews[0].rating) ? "fill-yellow-400 text-yellow-400" : "text-gray-300"
                         }`}
                       />
                     ))}
                   </div>
-                  <span className="text-xs text-gray-500 ml-1">({product.reviewCount})</span>
+                  <span className="text-xs text-gray-500 ml-1">({product.reviews[0].rating})</span>
                 </div>
                 <div className="font-bold mt-2">${product.price.toFixed(2)}</div>
               </CardContent>

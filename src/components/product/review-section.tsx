@@ -284,13 +284,13 @@ export default function ReviewSection({
                 <CardContent className="p-6">
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex items-center">
-                      <Avatar className="h-10 w-10 mr-3">
-                        <AvatarImage src={review.avatar} alt={review.user} />
+                      {/* <Avatar className="h-10 w-10 mr-3">
+                        <AvatarImage src={review.} alt={review.user} />
                         <AvatarFallback>{review.user.charAt(0)}</AvatarFallback>
-                      </Avatar>
+                      </Avatar> */}
                       <div>
-                        <div className="font-medium">{review.user}</div>
-                        <div className="text-sm text-gray-500">{review.date}</div>
+                        <div className="font-medium">{review.user_id}</div>
+                        <div className="text-sm text-gray-500">{review.created_at}</div>
                       </div>
                     </div>
                     <div className="flex">
@@ -304,7 +304,7 @@ export default function ReviewSection({
                       ))}
                     </div>
                   </div>
-                  <h4 className="font-medium mb-2">{review.title}</h4>
+                  <h4 className="font-medium mb-2">{review.comment}</h4>
                   <p className="text-gray-600">{review.comment}</p>
                 </CardContent>
               </Card>

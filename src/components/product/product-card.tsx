@@ -50,14 +50,14 @@ export default function ProductCard({ product }: ProductCardProps) {
       <Card className="overflow-hidden hover:shadow-md transition-shadow h-full flex flex-col">
         <div className="relative w-full h-[30vh]">
           <Image
-            src={product.productImages[0] || "/Amishrit.png"}
+            src={product.images[0] || "/Amishrit.png"}
             alt={product.name}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             priority={true}
             className="object-cover"
           />
-          {product.onSale && <Badge className="absolute top-2 left-2 bg-red-500 hover:bg-red-600">Sale</Badge>}
+          {/* {product.onSale && <Badge className="absolute top-2 left-2 bg-red-500 hover:bg-red-600">Sale</Badge>} */}
           <Button
             variant="ghost"
             size="icon"
@@ -74,9 +74,9 @@ export default function ProductCard({ product }: ProductCardProps) {
         <CardFooter className="p-4 pt-0 flex justify-between items-center">
           <div className="flex items-baseline gap-2">
             <span className="font-bold">${product.price}</span>
-            {product.originalPrice && (
+            {/* {product.originalPrice && (
               <span className="text-sm text-gray-500 line-through">${product.price}</span>
-            )}
+            )} */}
           </div>
           <Button
             variant="ghost"
