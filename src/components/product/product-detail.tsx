@@ -11,10 +11,10 @@ import type { Product } from "@/types"
 import { useQuery } from "@tanstack/react-query"
 import Link from "next/link"
 import { Separator } from "../ui/separator"
-import { useAppDispatch } from "@/store/store"
-import { useWishlist } from "@/hooks/useWishlist"
+import { useAppDispatch, useAppSelector } from "@/store/store"
 import { getProductsById } from "@/api/products"
 import { addToCart } from "@/store/slices/cartSlice"
+import { addToWishlist, removeFromWishlist } from "@/store/slices/wishlistSlice"
 
 interface ProductDetailProps {
   id: string
@@ -23,12 +23,13 @@ interface ProductDetailProps {
 export default function ProductDetail({ id }: ProductDetailProps) {
   const router = useRouter()
   const dispatch = useAppDispatch()
-  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist()
   const [showAllThumbnails, setShowAllThumbnails] = useState(false)
   const [product, setProduct] = useState<Product | null>(null)
   const [quantity, setQuantity] = useState(1)
   const [selectedImage, setSelectedImage] = useState(0)
   const [isWishlisted, setIsWishlisted] = useState(false)
+
+  const isInWishlist = useAppSelector((state) => state.wishlist.items)
 
   const nextImage = () => {
     if (!product?.images?.length) return
@@ -53,7 +54,7 @@ export default function ProductDetail({ id }: ProductDetailProps) {
         const productData = await data
         if (productData) {
           setProduct(productData)
-          setIsWishlisted(isInWishlist(productData.id))
+          setIsWishlisted(isInWishlist.some((item) => item.id === product?.id))
         } else {
           toast.error("Product not found")
           router.push("/products")
@@ -104,7 +105,7 @@ export default function ProductDetail({ id }: ProductDetailProps) {
     dispatch(
       addToCart({
         ...product,
-        quantity,
+        // quantity,
       }),
     )
     toast.success(`${product.name} added to cart`)
@@ -112,7 +113,7 @@ export default function ProductDetail({ id }: ProductDetailProps) {
 
   const handleToggleWishlist = () => {
     if (isWishlisted) {
-      removeFromWishlist(product.id)
+      dispatch(removeFromWishlist(String(product.id)))
       toast.success(`${product.name} removed from wishlist`)
     } else {
       addToWishlist(product)
