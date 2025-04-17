@@ -5,7 +5,7 @@ import Image from "next/image"
 import { Product } from "@/types"
 import { useRouter } from "next/navigation"
 import { useDispatch } from "react-redux"
-import { setCart } from "@/store/cartSlice"
+import { setCart } from "@/store/cartSlice" // Adjust the path based on your project structure
 
 export default function ProductDetailPage({ product }: { product: Product }) {
   const images = product.images?.length ? product.images : ["/placeholder.svg"]

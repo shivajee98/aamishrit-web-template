@@ -7,14 +7,14 @@ import { useEffect, useState } from "react"
 import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
-import { useWishlist } from "@/context/wishlist-context"
-import { getProductById } from "@/api/products"
-import { addToCart } from "@/react-redux/slices/cartSlice"
-import { useAppDispatch } from "@/react-redux/store"
 import type { Product } from "@/types"
 import { useQuery } from "@tanstack/react-query"
 import Link from "next/link"
 import { Separator } from "../ui/separator"
+import { useAppDispatch } from "@/store/store"
+import { useWishlist } from "@/hooks/useWishlist"
+import { getProductsById } from "@/api/products"
+import { addToCart } from "@/store/slices/cartSlice"
 
 interface ProductDetailProps {
   id: string
@@ -31,18 +31,18 @@ export default function ProductDetail({ id }: ProductDetailProps) {
   const [isWishlisted, setIsWishlisted] = useState(false)
 
   const nextImage = () => {
-    if (!product?.productImages?.length) return
-    setSelectedImage((prev) => (prev + 1) % product.productImages.length)
+    if (!product?.images?.length) return
+    setSelectedImage((prev) => (prev + 1) % product.images.length)
   }
 
   const prevImage = () => {
-    if (!product?.productImages?.length) return
-    setSelectedImage((prev) => (prev - 1 + product.productImages.length) % product.productImages.length)
+    if (!product?.images?.length) return
+    setSelectedImage((prev) => (prev - 1 + product.images.length) % product.images.length)
   }
 
   const {data, isLoading} = useQuery({
     queryKey: ["productId"],
-    queryFn: () => getProductById(id)
+    queryFn: () => getProductsById(id)
   })
 
 
@@ -139,7 +139,7 @@ export default function ProductDetail({ id }: ProductDetailProps) {
       <div className="lg:w-[70%] space-y-4">
             <div className="relative rounded-lg overflow-hidden border border-[#D4B08C] h-[400px] md:h-[600px] bg-white">
               <Image
-                src={product.productImages[selectedImage] || "/placeholder.svg"}
+                src={product.images[selectedImage] || "/placeholder.svg"}
                 alt={product.name}
                 fill
                 className="object-contain p-4"
@@ -160,7 +160,7 @@ export default function ProductDetail({ id }: ProductDetailProps) {
               </button>
             </div>
             <div className="flex gap-2 overflow-x-auto pb-2">
-              {product.productImages?.slice(0, showAllThumbnails ? product.productImages.length : 4).map((image, index) => (
+              {product.images?.slice(0, showAllThumbnails ? product.images.length : 4).map((image, index) => (
                 <button
                   key={index}
                   onClick={() => setSelectedImage(index)}
@@ -178,7 +178,7 @@ export default function ProductDetail({ id }: ProductDetailProps) {
                   />
                 </button>
               ))}
-              {(product.productImages?.length ?? 0) > 4 && !showAllThumbnails && (
+              {(product.images?.length ?? 0) > 4 && !showAllThumbnails && (
                 <button
                   onClick={() => setShowAllThumbnails(true)}
                   className="flex-shrink-0 rounded-md overflow-hidden border-2 border-[#D4B08C] w-24 h-24 flex items-center justify-center bg-[#F0E6D9]"
@@ -200,9 +200,9 @@ export default function ProductDetail({ id }: ProductDetailProps) {
                     <Star
                       key={i}
                       className={`h-5 w-5 ${
-                        i < Math.floor(product.rating)
+                        i < Math.floor(product.reviews[0].rating)
                           ? "fill-[#8B5A2B] text-[#8B5A2B]"
-                          : i < product.rating
+                          : i < product.reviews[0].rating
                             ? "fill-[#8B5A2B] text-[#8B5A2B] opacity-50"
                             : "text-[#D4B08C]"
                       }`}
@@ -210,16 +210,16 @@ export default function ProductDetail({ id }: ProductDetailProps) {
                   ))}
                 </div>
                 <span className="text-[#8B5A2B]">
-                  {product.rating} ({product.reviewCount} reviews)
+                  {product.reviews[0].rating} ({product.reviews[0].rating} reviews)
                 </span>
               </div>
             </div>
 
             <div className="flex items-baseline gap-2">
               <span className="text-3xl font-bold text-[#6B4226]">{product.price}</span>
-              {product.originalPrice && (
+              {/* {product.originalPrice && (
                 <span className="text-lg text-[#8B5A2B] line-through">{product.originalPrice}</span>
-              )}
+              )} */}
             </div>
 
             <div>
@@ -288,7 +288,7 @@ export default function ProductDetail({ id }: ProductDetailProps) {
               <h3 className="font-medium text-[#6B4226] mb-2">Product Details:</h3>
               <ul className="grid grid-cols-1 gap-2 text-[#8B5A2B]">
                 <li>
-                  <span className="font-medium">Weight:</span> {product.weight}
+                  {/* <span className="font-medium">Weight:</span> {product.weight} */}
                 </li>
               </ul>
             </div>
@@ -298,14 +298,14 @@ export default function ProductDetail({ id }: ProductDetailProps) {
             <div>
               <h3 className="font-medium text-[#6B4226] mb-2">Features:</h3>
               <ul className="space-y-2">
-                {product.features?.map((feature, index) => (
+                {/* {product.features?.map((feature, index) => (
                   <li key={index} className="flex items-start">
                     <div className="h-6 w-6 rounded-full bg-[#8B5A2B] flex items-center justify-center text-white mr-3 mt-0.5">
                       ✓
                     </div>
                     <span className="text-[#8B5A2B]">{feature}</span>
                   </li>
-                ))}
+                ))} */}
               </ul>
             </div>
           </div>
