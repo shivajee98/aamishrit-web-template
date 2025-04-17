@@ -6,11 +6,29 @@
 
 @theme inline {
     --color-brown-background: #FDF7F0;
-    /* --color-brown-light: #e6d7c3;
-    --color-brown-default: #d4bc94; */
     --color-brown-light-text: #E6D5C1;
     --color-brown-heading: #6B4226;
     --color-brown-text: #8B5A2B;
+
+     --color-brown-50: #FDF7F0;  /*Very Light Beige (Background) */
+     --color-brown-100: #F8EFE3;  /*Lightest Brown Tint */
+     --color-brown-200: #EBDDC9;  /*Light Cream (similar to light-text) */
+     --color-brown-300: #E6D5C1;  /*Soft Light Brown (light text) */
+     --color-brown-400: #D4BC94;  /*Light Brown (your default) */
+     --color-brown-500: #C1A878;  /*Warm Tan (nice for buttons) */
+     --color-brown-600: #A9855C;  /*Toasted Brown */
+     --color-brown-700: #8B5A2B;  /*Saddle Brown (text color) */
+     --color-brown-800: #6B4226;  /*Deep Brown (heading color) */
+     --color-brown-900: #4A2C17;  /* Dark Roast Brown */
+
+     --color-jaggery: #C38E4D;        /* Rich golden brown */
+     --color-caramel: #A76C29;        /* Deep caramel */
+     --color-almond: #D4BFAA;         /* Warm almond */
+     --color-deep-jaggery: #8B5A2B;   /* Bold brown */
+     --color-cocoa: #4B2E1A;          /* Deep brown */
+     --color-walnut: #6A4E34;         /* Warm brown */
+
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);

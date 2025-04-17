@@ -33,7 +33,7 @@ const AboutSection = () => {
                 <div className="space-y-16">
                     {categories.map((item, index) => (
                         <div
-                            key={item.slug}
+                            key={index}
                             className={`flex flex-col ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
                                 } gap-8 items-center`}
                         >
