@@ -12,5 +12,6 @@ export function formatPrice(price: number): string {
       currency: "INR",
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
+
     }).format(price)
   }

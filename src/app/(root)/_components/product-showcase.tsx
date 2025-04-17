@@ -11,12 +11,9 @@ const ProductShowcase = () => {
   const { products, loading, error } = useProducts();
   const [categories, setCategories] = useState<string[]>([]);
 
-    console.log("Products: ", products ?? "No category available");
-    if (products.length > 0) {
-        products.forEach((product) => {
-            console.log("Category Name:", product.Category ?? "No category");
-        });
-    }
+  if (error)
+    return <div className="text-center py-20 text-red-600">Error: {error}</div>
+
   if (error)
     return <div className="text-center py-20 text-red-600">Error: {error}</div>;
 
@@ -25,6 +22,7 @@ const ProductShowcase = () => {
       const uniqueCategories = Array.from(
         new Set(
           products
+
             .map((product) => product.Category?.[0]?.name)
             .filter((name) => name !== undefined && name !== null)
         )
@@ -101,7 +99,9 @@ const ProductShowcase = () => {
           <div className="space-y-16">
             {categories.map((category) => {
               const categoryProducts = products.filter(
+
                 (product) => product.Category[0].name === category
+
               );
 
               if (categoryProducts.length === 0) {
