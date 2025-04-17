@@ -11,7 +11,7 @@ const ProductShowcase = () => {
   const { products, loading, error } = useProducts();
   const [categories, setCategories] = useState<string[]>([]);
 
-  console.log("Products: ", products);
+  //   console.log("Products: ", products[0]);
 
   if (error)
     return <div className="text-center py-20 text-red-600">Error: {error}</div>;
@@ -104,40 +104,43 @@ const ProductShowcase = () => {
                 return null;
               }
 
-              return(
+              return (
                 <div key={category} className="space-y-6">
-                    <div className="flex items-center justify-between mb-6">
-                        <h3 className="text-2xl font-semibold text-brown-800 ">
-                            {formatCategoryName(category)}
-                        </h3>
-                        <Link href={`/category/${category}`} className="flex items-center text-brown-600 hover:text-brown-800 transition-colors">
-                        <span>View all</span>
-                        <ChevronRight className="w-4 h-4" />
-                        </Link>
-                    </div>
+                  <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-2xl font-semibold text-brown-800 ">
+                      {formatCategoryName(category)}
+                    </h3>
+                    <Link
+                      href={`/category/${category}`}
+                      className="flex items-center text-brown-600 hover:text-brown-800 transition-colors"
+                    >
+                      <span>View all</span>
+                      <ChevronRight className="w-4 h-4" />
+                    </Link>
+                  </div>
 
-                    <motion.div
+                  <motion.div
                     variants={containerVariants}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, margin: "-100px" }}
                     className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 md:gap-8"
-                    >
-                        {categoryProducts.map((product) => (
-                                    <motion.div
-                                    key={product.ID}
-                                    variants={itemVariants}
-                                    whileHover={{ y: -5 }}
-                                    className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300"
-                                  >
-                                    <div className="relative aspect-square overflow-hidden">
-                                      <Image
-                                        src={product.images[0] || "/placeholder.svg"}
-                                        alt={product.name}
-                                        fill
-                                        className="object-cover transition-transform duration-500 hover:scale-105"
-                                      />
-                                      {/* {product.isNew && (
+                  >
+                    {categoryProducts.map((product) => (
+                      <motion.div
+                        key={product.ID}
+                        variants={itemVariants}
+                        whileHover={{ y: -5 }}
+                        className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300"
+                      >
+                        <div className="relative aspect-square overflow-hidden">
+                          <Image
+                            src={product.images[0] || "/placeholder.svg"}
+                            alt={product.name}
+                            fill
+                            className="object-cover transition-transform duration-500 hover:scale-105"
+                          />
+                          {/* {product.isNew && (
                                         <div className="absolute top-2 left-2">
                                           <Badge className="bg-brown-600 text-white">
                                             New
@@ -151,34 +154,34 @@ const ProductShowcase = () => {
                                           </Badge>
                                         </div>
                                       )} */}
-                                    </div>
-                                    <div className="p-4">
-                                      <h4 className="text-lg font-semibold text-brown-text mb-2 line-clamp-1">
-                                        {product.name}
-                                      </h4>
-                                      {product.description && (
-                                        <p className="text-sm text-brown-text/70 mb-3 line-clamp-2">
-                                          {product.description}
-                                        </p>
-                                      )}
-                                      <div className="flex justify-between items-center mt-2">
-                                        <span className="text-lg font-bold text-brown-700">
-                                          {formatPrice(product.price)}
-                                        </span>
-                                        <Button
-                                          variant="outline"
-                                          size="sm"
-                                          className="text-brown-700 bg-brown-300 hover:bg-brown-200 hover:text-brown-800 rounded-full"
-                                        >
-                                          <ShoppingCart className="w-4 h-4" />
-                                        </Button>
-                                      </div>
-                                    </div>
-                            </motion.div>
-                        ))}
-                    </motion.div>
+                        </div>
+                        <div className="p-4">
+                          <h4 className="text-lg font-semibold text-brown-text mb-2 line-clamp-1">
+                            {product.name}
+                          </h4>
+                          {product.description && (
+                            <p className="text-sm text-brown-text/70 mb-3 line-clamp-2">
+                              {product.description}
+                            </p>
+                          )}
+                          <div className="flex justify-between items-center mt-2">
+                            <span className="text-lg font-bold text-brown-700">
+                              {formatPrice(product.price)}
+                            </span>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="text-brown-700 bg-brown-300 hover:bg-brown-200 hover:text-brown-800 rounded-full"
+                            >
+                              <ShoppingCart className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
                 </div>
-              )
+              );
             })}
           </div>
         )}
