@@ -19,10 +19,11 @@ export interface Product {
   onSale?: boolean
   isActive?: boolean
   isFeatured?: boolean
-  category: {
-    name: string
+  Category: [
+    name: string,
+    description: string,
     slug: string
-  }
+  ]
 }
 
 export interface Review {
