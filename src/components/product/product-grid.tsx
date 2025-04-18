@@ -11,7 +11,7 @@ import { Product } from "@/types"
 
 interface ProductGridProps {
   featured?: boolean
-  categorySlug?: string
+  categoryId?: string | number
   limit?: number
 }
 

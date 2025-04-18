@@ -101,7 +101,7 @@ export interface OrderItem {
 
 export interface Category {
   name: string;
-  slug: string;
+  ID: string | number;
   description?: string;
   images: string[];
   products: Product[];

@@ -1,24 +1,20 @@
-import { useCategory } from "@/hooks/useCategoryById";
-import { notFound } from "next/navigation";
-import ProductGrid from "@/components/product/product-grid";
-import ProductGridSkeleton from "@/components/product/Product-grid-skeleton";
-import Image from "next/image";
-import { Suspense } from "react";
+// app/categories/[id]/page.tsx
+import { getCategoryById } from "@/api/category"
+import { notFound } from "next/navigation"
+import ProductGrid from "@/components/product/product-grid"
+import ProductGridSkeleton from "@/components/product/Product-grid-skeleton"
+import Image from "next/image"
+import { Suspense } from "react"
 
-export default function CategoryPage({
+export default async function CategoryPage({
   params,
 }: {
-  params: { slug: string };
+  params: { id: string | number }
 }) {
-  const { slug } = params;
-  const { data: category, isLoading } = useCategory(slug);
-
-  if (isLoading) {
-    return <ProductGridSkeleton count={12} />;
-  }
+  const category = await getCategoryById(params.id)
 
   if (!category) {
-    notFound();
+    notFound()
   }
 
   return (
@@ -49,9 +45,9 @@ export default function CategoryPage({
         {/* Products */}
         <h2 className="text-2xl font-bold mb-6">Products</h2>
         <Suspense fallback={<ProductGridSkeleton count={12} />}>
-          <ProductGrid categorySlug={slug} />
+          <ProductGrid categoryId={params.id} />
         </Suspense>
       </div>
     </div>
-  );
+  )
 }

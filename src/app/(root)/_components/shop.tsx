@@ -40,7 +40,7 @@ const ShopSection = () => {
                     className="grid grid-cols-1 md:grid-cols-3 gap-8"
                 >
                     {categories.map((category) => (
-                        <div key={category.slug} className="product-card flex flex-col">
+                        <div key={category.ID} className="product-card flex flex-col">
                             <div className="relative overflow-hidden h-64">
                                 {/* Use the first image from the images array, fallback to placeholder */}
                                 <Image
@@ -53,7 +53,7 @@ const ShopSection = () => {
                             <div className="p-6 flex flex-col flex-grow bg-white">
                                 <h3 className="text-2xl font-semibold text-luxury-dark mb-2">{category.name}</h3>
                                 <p className="text-luxury-text/70 mb-4 flex-grow">{category.description || "No description available"}</p>
-                                <Link href={`/category/${category.slug}`}>
+                                <Link href={`/categories/${category.ID}`}>
                                     <Button className="w-full bg-brown-heading hover:text-brown-background text-brown-light-text hover:bg-brown-heading/80 transition duration-300 ease-in-out">
                                         Browse {category.name}
                                     </Button>
