@@ -96,3 +96,4 @@ export default function ProductDetailPage({ product }: { product: Product }) {
     </div>
   )
 }
+// oye
